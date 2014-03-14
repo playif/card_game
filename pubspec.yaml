@@ -1,7 +1,5 @@
 name: card_game
 description: A sample web application
-dependencies:
-  web_components: any
 dev_dependencies:
   angular: any
   browser: any

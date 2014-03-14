@@ -29,43 +29,12 @@ class CardUI {
     return "";
   }
   
-//  List<CardModel> getDecks(){
-//    return model[uid][did][cid];
-//  }
-  
-//  Map<String,String> background={
-//     'float': 'left',
-//     'cursor': 'pointer',
-//     'width': '40px',
-//     'height': '60px',
-//     'background-size': '100% 100%'
-//  };
-  
-  
-  
   void clickCard(){
-    //print(card.pos);
     service.clickCard(card);
   }
   
   String getBackground() {
-    
-    //if (cid == null) return "";
-    
-    //background['background-image']= "url('${getSmallImg(cid)}')";
-    //print("url('${getSmallImg(cid)}')");
-    //print("url('img/75px-${CardSet.def(cid).name}.jpg')");
     return "url('img/75px-${CardSet.def(card.cid).name}.jpg')";
   }
   
-//  String getSmallImg(int cid) {
-//    return ;
-//  }
-  
-//  @override
-//  void attach() {
-//    
-//    
-//    // TODO: implement attach
-//  }
 }

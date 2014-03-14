@@ -1,6 +1,9 @@
 :host {
   flex: auto;
   -webkit-flex: auto;
+  max-width:200px;
+  min-width:200px;
+  width:200px;
 }
 
 .decks {
