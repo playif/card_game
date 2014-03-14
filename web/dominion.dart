@@ -403,13 +403,12 @@ class GameController {
 
 class GameModule extends Module {
   GameModule() {
-    type(GameController);
-    type(Profiler, implementedBy: Profiler);
     type(HostUI);
     type(UserUI);
     type(DeckUI);
     type(CardUI);
     type(ClientService);    
+    type(GameController);
     //type(CardNameFilter); // comment out to enable profiling
   }
 }
@@ -419,34 +418,34 @@ void main() {
   //  Dropdown.use();
   //  Tooltip.wire(element)
 
-  var logs = querySelector("#logs");
-  DivElement info = querySelector("#info") as DivElement;
-  var input = querySelector("#inputBox") as TextAreaElement;
-  input.onKeyPress.listen((s) {
-    if (!s.shiftKey && s.keyCode == 13) {
+//  var logs = querySelector("#logs");
+//  DivElement info = querySelector("#info") as DivElement;
+//  var input = querySelector("#inputBox") as TextAreaElement;
+//  input.onKeyPress.listen((s) {
+//    if (!s.shiftKey && s.keyCode == 13) {
+//
+//    }
+//  });
 
-    }
-  });
-
-  void adjustLayout() {
-    var rect = info.getBoundingClientRect();
-    logs.style.height =
-        "${window.innerHeight-info.clientHeight-input.clientHeight}px";
-  }
+//  void adjustLayout() {
+//    var rect = info.getBoundingClientRect();
+//    logs.style.height =
+//        "${window.innerHeight-info.clientHeight-input.clientHeight}px";
+//  }
 
   //  info.addEventListener("resize", (e){
   //    print("here");
   //    adjustLayout();
   //  },true);
 
-  window.onResize.listen((s) {
-    adjustLayout();
-  });
-
-  window.onLoad.first.then((s) {
-    adjustLayout();
-
-  });
+//  window.onResize.listen((s) {
+//    adjustLayout();
+//  });
+//
+//  window.onLoad.first.then((s) {
+//    adjustLayout();
+//
+//  });
 
   //var table=querySelector("#table");
   //  window.onMouseMove.listen((s){

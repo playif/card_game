@@ -2,6 +2,14 @@
   display: none !important;
 }
 
+.splash {
+  display: none;
+}
+
+[ng-cloak].splash {
+  display: block !important;
+}
+
 .animate-enter {
   -webkit-transition: 1s linear all; /* Chrome */
   transition: 1s linear all;
@@ -12,11 +20,12 @@
   opacity: 1;
 }
 
-body {
+
+body,html {
   margin: 0;
   padding: 0;
   border: 0;
-  overflow: hidden;
+  overflow: visible;
   height: 100%;
   max-height: 100%;
   background-color: #F8F8F8;
@@ -26,45 +35,31 @@ body {
   line-height: 1.2em;
 }
 
-#framecontentLeft,#framecontentRight {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0px; /*Width of left frame div*/
-  height: 100%;
-  overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-  background-color: pink;
-  color: white;
+.flex-box {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: stretch;
+  align-items: stretch;
 }
 
-#framecontentRight {
-  position: absolute;
-  left: auto;
-  right: 0px;
-  bottom: 0px;
-  width: 200px; /*Width of right frame div*/
-  overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-  background-color:black;
-  color: white;
+.flex {
+  flex: auto;
+  -webkit-flex: auto;
 }
 
-#maincontent {
-  position: fixed;
-  top: 0;
-  left: 0px; /*Set left value to WidthOfLeftFrameDiv*/
-  right: 200px; /*Set right value to WidthOfRightFrameDiv*/
-  bottom: 0;
-  background: #fff;
+.flex-h{
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.right{
+  width:300px;
+  max-width:300px;
 }
 
 .header {
-  padding-top: 15px; //
-  margin-left: 15px;
-  position: fixed;
+  padding: 15px;
   height: 30px;
-  top: 0px;
-  left: 0px;
-  right: 200px;
   background-color: green;
   font-size: 20px;
   text-align: center;
@@ -79,31 +74,11 @@ body {
   color:white;
 }
 
-.innertube {
-  position: absolute;
-  overflow: auto;
-  width: 100%;
-  height: 100%;
-  top: 45px;
-
-  /*Margins for inner DIV inside each DIV (to provide padding)*/
-}
-
-* html body { /*IE6 hack*/
-  padding: 0 150px 0 200px;
-  /*Set value to (0 WidthOfRightFrameDiv 0 WidthOfLeftFrameDiv)*/
-}
-
-* html #maincontent { /*IE6 hack*/
-  height: 100%;
-  width: 100%;
-}
-
 textarea {
   resize: none;
-  width: 100%;
+
   background-color: yellow;
-  height: 100px;
+  max-height: 50px;
 } /* none|horizontal|vertical|both */
 
 
