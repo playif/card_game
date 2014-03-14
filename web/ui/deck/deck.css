@@ -1,8 +1,11 @@
 :host{
   flex:auto;
+  -webkit-flex:auto;
 }
 
 .cards{
   display:flex;
+  display:-webkit-flex;
   flex-wrap:wrap;
+  -webkit-wrap:auto;
 }
