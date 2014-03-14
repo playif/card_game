@@ -1,0 +1,9 @@
+<div class="deck">
+  <div>
+  {{c.deckNames[$index]}} <span
+  ng-if="c.deck.showNum==2 || (c.model.id==$parent.$index && deck.showNum==1)">
+  [{{deck.cardNum}}] </span>
+  </div>
+
+  <card ng-repeat="card in c.deck.cards"></card>
+</div>

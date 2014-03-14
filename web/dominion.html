@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ng="http://angularjs.org" data-ng-app>
+<head>
+<!--[if lte IE 8]>
+    <script src="/path/to/json2.js"></script>
+    <![endif]-->
+<meta charset="utf-8" />
+
+<title>Dominion v0.9</title>
+<link rel="stylesheet" href="cardgame.css" />
+
+<script id="deck" type="text/ng-template">
+  <span
+  ng-class="c.getCardStyle(card)" ng-repeat="card in deck.cards"
+  ng-style="c.getBackground(card.cid)"
+  ng-mouseover="c.showCard(card.cid)" ng-mouseout="c.hindCard()"
+  ng-click="c.clickCard(card)"> </span> <br clear="both" />
+</script>
+
+<script id="deck_name" type="text/ng-template">
+  <div>
+  {{c.deckNames[$index]}} <span
+  ng-if="deck.showNum==2 || (c.model.id==$parent.$index && deck.showNum==1)">
+  [{{deck.cardNum}}] </span>
+  </div>
+</script>
+
+</head>
+<body load-template-cache ng-cloak card-game>
+
+  <div id="framecontentLeft"></div>
+
+  <div id="framecontentRight">
+
+    <div id="info">
+      <div ng-if="c.model.start">
+        <div ng-if="c.model.hasValue">公開資訊:</div>
+
+        <ul>
+          <li ng-if="c.model.getValue('action')">行動:
+            {{c.model.getValue('action')}}</li>
+          <li ng-if="c.model.getValue('buy')">購買:
+            {{c.model.getValue('buy')}}</li>
+          <li ng-if="c.model.getValue('gold')">金幣:
+            {{c.model.getValue('gold')}}</li>
+          <li ng-if="c.model.getValue('route')">銷路:
+            {{c.model.getValue('route')}}</li>
+        </ul>
+
+        <div ng-if="c.clientUser.hasValue">私人資訊:</div>
+        <ul>
+          <li ng-if="c.clientUser.getValue('victory')">勝利點數:
+            {{c.clientUser.getValue('victory')}}</li>
+          <!-- <div ng-repeat="info in c.model.info()">{{info.key}}</div> -->
+        </ul>
+      </div>
+    </div>
+    <div id="logs"></div>
+    <textarea style="height: 40px;" id="inputBox"
+      placeholder="Chat here."></textarea>
+  </div>
+
+  <div id="maincontent">
+    <div ng-if="c.model.start">
+      <div id="table" class="innertube">
+
+        <div style="margin: 10px;">
+
+          <div>
+            <h1>Supply</h1>
+
+            <div ng-repeat="deck in c.model.host.decks"
+              style="float: left;">
+              <span ng-if="deck.showNum==2"> [{{deck.cardNum}}] </span><span
+                ng-if="deck.getValue('vt')"> <img
+                src="img/16px-vp.png" style="width: 10px; height: 10px;" /></span>
+              <br /> <span ng-include="deck"></span>
+            </div>
+            <br style="clear: both;" />
+            <h1>Players</h1>
+
+            <div style="float: left;">
+              <div ng-if="c.currentID!=c.clientID"
+                style="width: 216px; margin-left: 5px; border: dotted 1px black;">
+                <div style='background-color: pink; margin: 10px;'>
+                  你的牌堆:</div>
+
+                <div ng-repeat="deck in c.clientUser.decks">
+                  <span ng-include="deck_name"></span><span
+                    ng-include="deck"></span>
+                </div>
+              </div>
+
+            </div>
+
+            <div
+              style="float: left; width: 216px; margin-left: 5px; border: dotted 1px black;">
+              <div style='background-color: yellow; margin: 10px;'>
+                換{{c.currentName}}出牌: <br />
+
+              </div>
+
+              <div ng-repeat="deck in c.currentUser.decks">
+
+                <span ng-include="deck_name"></span><span
+                  ng-include="deck"></span>
+              </div>
+
+            </div>
+
+            <div ng-repeat="user in c.model.users" style="float: left;">
+
+              <div
+                style="margin-left: 5px; width: 216px; border: dotted 1px black;"
+                ng-if="c.currentID!=user.uid && user.uid!=c.clientID">
+                <div style='background-color: gray; margin: 10px;'>
+                  {{c.getName(user.uid)}}的牌堆:</div>
+
+                <div ng-repeat="deck in user.decks">
+                  <span ng-include="deck_name"></span><span
+                    ng-include="deck"></span>
+                </div>
+
+              </div>
+
+            </div>
+            
+            <user ng-repeat="user in c.model.users"></user>
+
+          </div>
+        </div>
+
+        <div></div>
+        <div style="height: 1200px;"></div>
+        <div class="header">
+          {{c.model.title}} <span ng-repeat="btn in c.model.btns"
+            ng-click="c.clickButton($index)"> <span class='btn'>
+              [{{btn}}] </span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <img id='tipCard'
+    ng-style="{'position': 'absolute','display': 'none'}"
+    alt="{{c.curCard.name}}"
+    ng-src="{{'img/200px-'+c.curCard.name+'.jpg'}}" />
+
+</body>
+
+<script type="application/dart" src="dominion.dart"></script>
+<script src="packages/browser/dart.js"></script>
+</html>

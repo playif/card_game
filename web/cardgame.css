@@ -1,0 +1,159 @@
+[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak {
+  display: none !important;
+}
+
+.animate-enter {
+  -webkit-transition: 1s linear all; /* Chrome */
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.animate-enter .animate-enter-active {
+  opacity: 1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  height: 100%;
+  max-height: 100%;
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+}
+
+#framecontentLeft,#framecontentRight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px; /*Width of left frame div*/
+  height: 100%;
+  overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+  background-color: pink;
+  color: white;
+}
+
+#framecontentRight {
+  position: absolute;
+  left: auto;
+  right: 0px;
+  bottom: 0px;
+  width: 200px; /*Width of right frame div*/
+  overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+  background-color:black;
+  color: white;
+}
+
+#maincontent {
+  position: fixed;
+  top: 0;
+  left: 0px; /*Set left value to WidthOfLeftFrameDiv*/
+  right: 200px; /*Set right value to WidthOfRightFrameDiv*/
+  bottom: 0;
+  background: #fff;
+}
+
+.header {
+  padding-top: 15px; //
+  margin-left: 15px;
+  position: fixed;
+  height: 30px;
+  top: 0px;
+  left: 0px;
+  right: 200px;
+  background-color: green;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn{
+  cursor: pointer;
+  font-weight: bold;"
+}
+
+.btn:hover{
+  color:white;
+}
+
+.innertube {
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  top: 45px;
+
+  /*Margins for inner DIV inside each DIV (to provide padding)*/
+}
+
+* html body { /*IE6 hack*/
+  padding: 0 150px 0 200px;
+  /*Set value to (0 WidthOfRightFrameDiv 0 WidthOfLeftFrameDiv)*/
+}
+
+* html #maincontent { /*IE6 hack*/
+  height: 100%;
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  background-color: yellow;
+  height: 100px;
+} /* none|horizontal|vertical|both */
+
+
+#info {
+  margin-left: 10px;
+  height :100px;
+  overflow: auto;
+}
+
+#logs {
+  background-color: red;
+  width: 100%;
+  overflow-y: auto;
+  height: 100px;
+
+}
+
+h1,p {
+  color: #333;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.canSelect{
+  box-shadow: 0px 0px 10px 4px rgba(255, 217, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px 4px rgba(255, 217, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(255, 217, 0, 0.5);
+}
+
+.canSelectRed{
+  box-shadow: 0px 0px 10px 4px rgba(255, 0, 0, 0.8);
+  -moz-box-shadow: 0px 0px 10px 4px rgba(255, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(255, 0, 0, 0.8);
+}
+
+.canSelectRedInset{
+  box-shadow: inset 0px 0px 5px 2px #00FF00;
+  -moz-box-shadow: inset 0px 0px 5px 2px #00FF00;
+  -webkit-box-shadow: inset 0px 0px 5px 2px #00FF00;
+}
+
+.canSelectRedInset:hover{
+  box-shadow: inset 0px 0px 5px 4px #FFFF00;
+  -moz-box-shadow: inset 0px 0px 5px 4px #FFFF00;
+  -webkit-box-shadow: inset 0px 0px 5px 4px #FFFF00;
+}
+
+
+
+
+
