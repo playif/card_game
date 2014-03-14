@@ -2,6 +2,11 @@
 ## Eclipse
 #################
 
+.DS_Store
+packages
+.project
+pubspec.lock
+
 *.pydevproject
 .project
 .metadata
