@@ -26,18 +26,18 @@ class DominionGame extends CardGame{
 //    return CardSet.def[cd.set][cd.cid];
 //  }
   bool hasType(int uid,CardType type, [int did=HAND]){
-    return model[uid][did].toList().any((s){
+    return model[uid][did].cards.any((s){
       var doc=CardSet.def(s.cid);
       return doc.types[type];
     });
   }
   
   bool hasCard(int uid,int cid, [int did=HAND]){
-    return model[uid][did].toList().any((s)=>s.cid==cid);
+    return model[uid][did].cards.any((s)=>s.cid==cid);
   }
   
   bool hasAttacked(int uid){
-    return model[uid][HAND].toList().any((s){
+    return model[uid][HAND].cards.any((s){
       var doc=CardSet.def(s.cid);
       return doc.attacked!=null;
     });

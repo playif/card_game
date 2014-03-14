@@ -8,6 +8,8 @@ import 'dart:collection';
 import 'package:card_game/server_client/card_client.dart';
 import 'package:card_game/card_game/card_game.dart';
 import 'package:card_game/dominion_card.dart';
+import 'ui/ui.dart';
+
 import 'dart:async';
 
 const int SINK = 0;
@@ -51,17 +53,35 @@ int scroll;
 //  }
 //}
 
+//@NgService()
+//class s1{
+//  
+//}
+
+final Client _client = new Client();
+
+class ClientService{
+  void clickCard(CardModel card) {
+    _client.sendCommand({
+      'cmd': 'clickCard',
+      'uid': card.uid,
+      'did': card.did,
+      'pos': card.pos,
+    });
+  }
+}
+
+
 
 @NgController(selector: '[card-game]', publishAs: 'c')
 class GameController {
   final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
-  final Client _client = new Client();
+
   GameModel model;
   DominionCardDef curCard;
   //String hi="hi";
 
   GameController() {
-
     //DivElement div=new DivElement();
     var game = new DominionGame();
     var ais = [new DominionAI(), new DominionAI(), new DominionAI()];
@@ -116,21 +136,26 @@ class GameController {
     }
   }
 
-  String getSmallImg(int cid) {
 
-    return 'img/75px-${CardSet.def(cid).name}.jpg';
+  
+  Map<String,String> background={
+     'float': 'left',
+     'cursor': 'pointer',
+     'width': '40px',
+     'height': '60px',
+     'background-size': '100% 100%'
+  };
+
+  Map<String,String> getBackground(int cid) {
+    //if (cid == null) return "";
+    
+    background['background-image']= "url('${getSmallImg(cid)}')";
+    //print("url('${getSmallImg(cid)}')");
+    return background;
   }
-
-  getBackground(int cid) {
-    if (cid == null) return "";
-    return {
-      'float': 'left',
-      'cursor': 'pointer',
-      'width': '40px',
-      'height': '60px',
-      'background-size': '100% 100%',
-      'background-image': "url('${getSmallImg(cid)}')"
-    };
+  
+  String getSmallImg(int cid) {
+    return 'img/75px-${CardSet.def(cid).name}.jpg';
   }
   //
   String getLargeImg(int cid) {
@@ -178,6 +203,12 @@ class GameController {
   }
 
   void clickCard(CardModel card) {
+//    print({
+//      'cmd': 'clickCard',
+//      'uid': card.uid,
+//      'did': card.did,
+//      'pos': card.pos,
+//    });
     _client.sendCommand({
       'cmd': 'clickCard',
       'uid': card.uid,
@@ -374,6 +405,11 @@ class GameModule extends Module {
   GameModule() {
     type(GameController);
     type(Profiler, implementedBy: Profiler);
+    type(HostUI);
+    type(UserUI);
+    type(DeckUI);
+    type(CardUI);
+    type(ClientService);    
     //type(CardNameFilter); // comment out to enable profiling
   }
 }

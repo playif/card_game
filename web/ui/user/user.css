@@ -1,0 +1,17 @@
+:host {
+  flex:auto; 
+}
+
+.decks{
+  display:flex;
+  flex-direction:column;
+}
+
+.title{
+  background-color: gray; 
+  margin: 10px;
+}
+
+.yellow{
+    background-color: yellow; 
+}

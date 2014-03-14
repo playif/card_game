@@ -1,8 +1,8 @@
-<div style="margin-left: 5px; width: 216px; border: dotted 1px black;"
-  ng-if="c.currentID!=user.uid && user.uid!=c.clientID">
-  <div style='background-color: gray; margin: 10px;'>
-    {{c.getName(user.uid)}}ªºµP°ï:</div>
 
-  <deck ng-repeat="deck in user.decks"></deck>
-
+<div class="title" ng-class="c.getTitleClass()">çŽ©å®¶[{{c.user.uid}}]:</div>
+<div class="decks">
+  <div ng-repeat="deck in c.user.decks">
+    {{c.getName(deck)}}
+    <deck model="deck"></deck>
+  </div>
 </div>

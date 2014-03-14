@@ -1,8 +1,8 @@
-:host{
-  flex:auto;
+:host {
+  flex:auto; 
 }
 
-.cards{
+.decks{
   display:flex;
   flex-wrap:wrap;
 }

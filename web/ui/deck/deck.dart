@@ -1,26 +1,35 @@
-import 'package:angular/angular.dart';
-import 'package:card_game/card_game/card_game.dart';
+part of ui;
 
-@NgComponent(selector: 'deck', templateUrl: 'ui/deck/deck.html', cssUrl: 'deck/deck.css',
+@NgComponent(selector: 'deck', templateUrl: 'ui/deck/deck.html', cssUrl: 'ui/deck/deck.css',
     publishAs: 'c')
-class DeckUI extends NgAttachAware {
-  static final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
-  
-  
-  @NgTwoWay('deck')
+class DeckUI {
+
+  @NgOneWay('model')
   DeckModel deck;
-
-  GameModel game;
+  
+  
+  DeckUI(){
+    //deck.
+  }
   
 
   
-//  DeckUI(){
+//  @NgTwoWay('uid')
+//  int uid;
+//  
+//  @NgTwoWay('did')
+//  int did;
+  
+//  List<CardModel> cards;
+//  
+//  List<CardModel> getDecks(){
+//    return model[uid][did].cards;
+//  }
+//  
+//
+//  @override
+//  void attach() {
+//    
 //    
 //  }
-
-  @override
-  void attach() {
-    
-    
-  }
 }

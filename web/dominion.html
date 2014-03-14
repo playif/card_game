@@ -8,7 +8,7 @@
 
 <title>Dominion v0.9</title>
 <link rel="stylesheet" href="cardgame.css" />
-
+<!--
 <script id="deck" type="text/ng-template">
   <span
   ng-class="c.getCardStyle(card)" ng-repeat="card in deck.cards"
@@ -24,7 +24,7 @@
   [{{deck.cardNum}}] </span>
   </div>
 </script>
-
+-->
 </head>
 <body load-template-cache ng-cloak card-game>
 
@@ -68,7 +68,10 @@
 
           <div>
             <h1>Supply</h1>
-
+            <div style="display: flex;">
+              <host model="c.model.host"></host>
+            </div>
+            <!--
             <div ng-repeat="deck in c.model.host.decks"
               style="float: left;">
               <span ng-if="deck.showNum==2"> [{{deck.cardNum}}] </span><span
@@ -77,8 +80,9 @@
               <br /> <span ng-include="deck"></span>
             </div>
             <br style="clear: both;" />
+            -->
             <h1>Players</h1>
-
+            <!--
             <div style="float: left;">
               <div ng-if="c.currentID!=c.clientID"
                 style="width: 216px; margin-left: 5px; border: dotted 1px black;">
@@ -124,9 +128,13 @@
               </div>
 
             </div>
-            
-            <user ng-repeat="user in c.model.users"></user>
 
+            <br style="clear: both;" />
+            -->
+            <div style="display: flex;">
+              <user ng-repeat="user in c.model.users" model="user"
+                client="c._client"></user>
+            </div>
           </div>
         </div>
 
