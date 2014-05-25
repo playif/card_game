@@ -2,7 +2,7 @@ part of ui;
 
 @Component(selector: 'card', templateUrl: 'ui/card/card.html', cssUrl: 'ui/card/card.css',
     publishAs: 'c',map:const{
-    	'model':'=>card'
+    	'model':'<=>card'
     })
 class CardUI {
 //  @NgOneWay('model')

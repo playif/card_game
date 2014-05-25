@@ -12,25 +12,24 @@ part 'deck/deck.dart';
 part 'card/card.dart';
 
 
-@Directive(selector: '[flex]',map:const{
-	'direction':'@direction'
-})
-class FlexUI extends AttachAware{
-//  @NgAttr('direction ')
-  String direction='row';
-  Element element;
-  
-  FlexUI(this.element){
-    element.style.display="flex";
-  }
-  
-  
-  @override
-  void attach(){
-    element.style.flexDirection=direction;
-  }
-}
-
-
+//@Directive(selector: '[flex]', map: const {
+//	'direction': '<=>direction'
+//})
+//class FlexUI extends AttachAware {
+//	//  @NgAttr('direction ')
+//	String direction = 'row';
+//	Element element;
+//
+//	FlexUI(this.element) {
+//		element.style.display = "flex";
+//	}
+//
+//
+//	@override
+//	void attach() {
+//		element.style.flexDirection = direction;
+//	}
+//}
+//
 
 

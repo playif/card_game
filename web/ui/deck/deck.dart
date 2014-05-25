@@ -2,7 +2,7 @@ part of ui;
 
 @Component(selector: 'deck', templateUrl: 'ui/deck/deck.html', cssUrl: 'ui/deck/deck.css',
     publishAs: 'c',map:const{
-    	'model':'=>deck'
+    	'model':'<=>deck'
     })
 class DeckUI {
 

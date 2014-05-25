@@ -2,7 +2,7 @@ part of ui;
 
 @Component(selector: 'user', templateUrl: 'ui/user/user.html', cssUrl: 'ui/user/user.css',
     publishAs: 'c',map:const{
-    	'model':'=>user'
+    	'model':'<=>user'
     })
 class UserUI{
   static final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
