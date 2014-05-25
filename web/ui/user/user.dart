@@ -1,14 +1,16 @@
 part of ui;
 
-@NgComponent(selector: 'user', templateUrl: 'ui/user/user.html', cssUrl: 'ui/user/user.css',
-    publishAs: 'c')
+@Component(selector: 'user', templateUrl: 'ui/user/user.html', cssUrl: 'ui/user/user.css',
+    publishAs: 'c',map:const{
+    	'model':'=>user'
+    })
 class UserUI{
   static final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
   
   
 //  @NgTwoWay('deck')
 //  DeckModel deck;
-  @NgOneWay('model')
+//  @NgOneWay('model')
   UserModel user;
   
 //  @NgTwoWay('client')

@@ -1,9 +1,11 @@
 part of ui;
 
-@NgComponent(selector: 'card', templateUrl: 'ui/card/card.html', cssUrl: 'ui/card/card.css',
-    publishAs: 'c')
+@Component(selector: 'card', templateUrl: 'ui/card/card.html', cssUrl: 'ui/card/card.css',
+    publishAs: 'c',map:const{
+    	'model':'=>card'
+    })
 class CardUI {
-  @NgOneWay('model')
+//  @NgOneWay('model')
   CardModel card;
   
 //  @NgTwoWay('uid')

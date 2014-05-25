@@ -5,3 +5,5 @@ dev_dependencies:
   browser: any
   http_server: any
   route: any
+transformers:
+- angular

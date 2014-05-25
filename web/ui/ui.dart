@@ -12,9 +12,11 @@ part 'deck/deck.dart';
 part 'card/card.dart';
 
 
-@NgDirective(selector: '[flex]')
-class FlexUI extends NgAttachAware{
-  @NgAttr('direction ')
+@Directive(selector: '[flex]',map:const{
+	'direction':'@direction'
+})
+class FlexUI extends AttachAware{
+//  @NgAttr('direction ')
   String direction='row';
   Element element;
   
