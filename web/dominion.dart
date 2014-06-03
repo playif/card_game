@@ -6,10 +6,12 @@ import 'dart:convert';
 import 'dart:collection';
 
 
-import 'package:card_game/server_client/card_client.dart';
+
 import 'package:card_game/card_game/card_game.dart';
 import 'package:card_game/dominion_card.dart';
-import 'ui/ui.dart';
+
+import 'package:card_game/rating/rating_component.dart';
+import 'package:card_game/ui/ui.dart';
 
 import 'dart:async';
 
@@ -60,43 +62,29 @@ int scroll;
 //
 //}
 
-final Client _client = new Client();
 
-class ClientService {
-	void clickCard(CardModel card) {
-		_client.sendCommand({
-			'cmd': 'clickCard',
-			'uid': card.uid,
-			'did': card.did,
-			'pos': card.pos,
-		});
-	}
-}
 
 
 
 @Controller(selector: '[card-game]', publishAs: 'c')
 class GameController {
 	final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
-
+	ClientService services=new ClientService();
 	GameModel model;
 	DominionCardDef curCard;
 	//String hi="hi";
+	int rating=3;
 
 	GameController() {
 		//DivElement div=new DivElement();
-		var game = new DominionGame();
-		var ais = [new DominionAI(), new DominionAI(), new DominionAI()];
-		game.computerDelay = 50;
-		for (int i = 0; i < ais.length; i++) {
-			game.createComputer(ais[i]);
-		}
-		_client.createLoaclGame(game);
+
+		
 		//_client.createOnlneGame();
 
-		model = new GameModel();
+		//model = new GameModel();
 		Timer wait = new Timer(new Duration(milliseconds: 500), setup);
 		//setup();
+		services.createLocalGame();
 
 		window.onMouseMove.listen((s) {
 			mp = s.client;
@@ -211,17 +199,18 @@ class GameController {
 		//      'did': card.did,
 		//      'pos': card.pos,
 		//    });
-		_client.sendCommand({
+		services.sendCommand({
 			'cmd': 'clickCard',
 			'uid': card.uid,
 			'did': card.did,
 			'pos': card.pos,
 		});
+
 		hindCard();
 	}
 
 	void clickButton(int bid) {
-		_client.sendCommand({
+		services.sendCommand({
 			'cmd': 'clickButton',
 			'bid': bid,
 		});
@@ -272,7 +261,7 @@ class GameController {
 
 	void setup() {
 
-		model = _client.clientModel;
+		model = services.model;
 		//var game=new DominionGame();
 
 		//Commander commander=new UserCommander(0,game);
@@ -380,7 +369,7 @@ class GameController {
 		var input = querySelector("#inputBox") as TextAreaElement;
 		input.onInput.listen((s) {
 			if (input.value.contains('\n')) {
-				_client.sendCommand({
+				services.sendCommand({
 					'cmd': 'talk',
 					'msg': input.value,
 				});
@@ -404,12 +393,14 @@ class GameController {
 
 class GameModule extends Module {
 	GameModule() {
-		type(HostUI);
-		type(UserUI);
-		type(DeckUI);
-		type(CardUI);
-		type(ClientService);
-		type(GameController);
+		bind(GameController);
+		bind(RatingComponent);
+		bind(ClientService);
+		bind(HostUI);
+		bind(UserUI);
+		bind(DeckUI);
+		bind(CardUI);
+//		bind(ClientService);
 		//type(CardNameFilter); // comment out to enable profiling
 	}
 }
@@ -459,6 +450,7 @@ void main() {
 
 	applicationFactory()
 			..addModule(new GameModule())
+			
 			..run();
 	//  ngBootstrap(module: );
 }
