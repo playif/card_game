@@ -1,6 +1,6 @@
 library ui;
 
-
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:card_game/card_game/card_game.dart';
 import 'package:card_game/dominion_card.dart';
@@ -48,7 +48,7 @@ class ClientService {
 	void createLocalGame(){
 		var game = new DominionGame();
 		var ais = [new DominionAI(), new DominionAI(), new DominionAI()];
-		game.computerDelay = 60;
+		game.computerDelay = 200;
 		for (int i = 0; i < ais.length; i++) {
 			game.createComputer(ais[i]);
 		}

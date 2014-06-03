@@ -1,10 +1,11 @@
 part of ui;
 
-@Component(selector: 'card',useShadowDom:false, templateUrl: 'packages/card_game/ui/card/card.html',
+@Component(selector: 'card', useShadowDom:false, templateUrl: 'packages/card_game/ui/card/card.html',
     publishAs: 'ccmd')
-class CardUI {
+class CardUI implements AttachAware{
   @NgOneWay('model')
   CardModel card;
+  Element element;
   
 //  @NgTwoWay('uid')
 //  int uid;
@@ -17,7 +18,7 @@ class CardUI {
   
   ClientService service;
   
-  CardUI(this.service){
+  CardUI(this.service,this.element){
     //print(controller.hashCode);
   }
   
@@ -38,7 +39,10 @@ class CardUI {
   void clickCard(){
     service.clickCard(card);
   }
-  
 
+  @override
+  void attach(){
+    element.style.backgroundImage="url('img/75px-${CardSet.def(card.cid).name}.jpg')";
+  }
   
 }

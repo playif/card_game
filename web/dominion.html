@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" ng-app>
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport"
@@ -29,7 +29,6 @@
 </head>
 <body class="flex-box" card-game>
 <div class="splash" ng-cloak>
-
     <p>Loading...</p>
 </div>
 
@@ -41,21 +40,18 @@
               ng-click="c.clickButton($index)" class='btn'>
             [{{btn}}]
 		</span>
-
     </div>
 
 
 
 
-
     <host model="c.model.host"></host>
-
     <hr style="clear: both;" />
     <h1>Players</h1>
 
 
 
-    <user class="user" ng-if="c.model.users != null" ng-repeat="user in c.model.users" model="user"></user>
+    <user class="user" ng-repeat="user in c.model.users" model="user"></user>
 
 
 
