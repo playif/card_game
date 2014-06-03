@@ -1,6 +1,6 @@
 part of ui;
 
-@Component(selector: 'deck', templateUrl: 'packages/card_game/ui/deck/deck.html', cssUrl: 'packages/card_game/ui/deck/deck.css',
+@Component(selector: 'deck',useShadowDom:false, templateUrl: 'packages/card_game/ui/deck/deck.html', cssUrl: 'packages/card_game/ui/deck/deck.css',
     publishAs: 'dcmp')
 class DeckUI {
 

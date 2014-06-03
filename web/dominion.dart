@@ -10,7 +10,7 @@ import 'dart:collection';
 import 'package:card_game/card_game/card_game.dart';
 import 'package:card_game/dominion_card.dart';
 
-import 'package:card_game/rating/rating_component.dart';
+
 import 'package:card_game/ui/ui.dart';
 
 import 'dart:async';
@@ -394,7 +394,6 @@ class GameController {
 class GameModule extends Module {
 	GameModule() {
 		bind(GameController);
-		bind(RatingComponent);
 		bind(ClientService);
 		bind(HostUI);
 		bind(UserUI);

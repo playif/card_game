@@ -1,8 +1,11 @@
 
-<div class="title" >玩家[{{cmp.userModel.uid}}]:</div>
+<div class="title" >玩家[{{ucmp.userModel.uid}}]:</div>
 <div class="decks">
-  <div ng-if="cmp.userModel.decks != null" ng-repeat="deck in cmp.userModel.decks">
-    {{cmp.getName(deck)}}
-    <deck ng-if="deck != null" model="deck"></deck>
+  <div ng-if="ucmp.userModel.decks != null" ng-repeat="deck in ucmp.userModel.decks">
+    {{ucmp.getName(deck)}}
+    <deck model="deck"></deck>
   </div>
+    <!--<deck model="cmp.userModel.decks[3]"></deck>-->
+
+
 </div>

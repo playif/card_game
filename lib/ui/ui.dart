@@ -48,7 +48,7 @@ class ClientService {
 	void createLocalGame(){
 		var game = new DominionGame();
 		var ais = [new DominionAI(), new DominionAI(), new DominionAI()];
-		game.computerDelay = 50;
+		game.computerDelay = 60;
 		for (int i = 0; i < ais.length; i++) {
 			game.createComputer(ais[i]);
 		}

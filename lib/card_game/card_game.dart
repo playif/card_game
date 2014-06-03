@@ -394,7 +394,7 @@ abstract class CardGame{
           int uid2=data['uid2'];
           int did2=data['did2'];
           int pos2=data['pos2'];
-          
+
           bool showCard1=_showCard(comm.uid, uid1, did1);
           //bool showNum1=_showNum(i, uid1, did1);
           
@@ -403,9 +403,10 @@ abstract class CardGame{
           
           if(showCard1 && showCard2){
             comm._changes.add(data);
+
           }
           else{
-            
+
             int cid2=_model[uid1][did1][pos1].cid;
             _sendRemoveCard(comm.uid,uid1,did1,comm,{
               'op':'removeCard',

@@ -1,163 +1,111 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" ng-app>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-		content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=0" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style"
-		content="black-translucent" />
-<title>Dominion v0.8.1</title>
-<link rel="stylesheet" href="cardgame.css" />
-<!--
-<script id="deck" type="text/ng-template">
-  <span
-  ng-class="c.getCardStyle(card)" ng-repeat="card in deck.cards"
-  ng-style="c.getBackground(card.cid)"
-  ng-mouseover="c.showCard(card.cid)" ng-mouseout="c.hindCard()"
-  ng-click="c.clickCard(card)"> </span> <br clear="both" />
-</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"/>
+    <title>Dominion v0.8.1</title>
+    <link rel="stylesheet" href="cardgame.css"/>
+    <!--
+    <script id="deck" type="text/ng-template">
+      <span
+      ng-class="c.getCardStyle(card)" ng-repeat="card in deck.cards"
+      ng-style="c.getBackground(card.cid)"
+      ng-mouseover="c.showCard(card.cid)" ng-mouseout="c.hindCard()"
+      ng-click="c.clickCard(card)"> </span> <br clear="both" />
+    </script>
 
-<script id="deck_name" type="text/ng-template">
-  <div>
-  {{c.deckNames[$index]}} <span
-  ng-if="deck.showNum==2 || (c.model.id==$parent.$index && deck.showNum==1)">
-  [{{deck.cardNum}}] </span>
-  </div>
-</script>
--->
+    <script id="deck_name" type="text/ng-template">
+      <div>
+      {{c.deckNames[$index]}} <span
+      ng-if="deck.showNum==2 || (c.model.id==$parent.$index && deck.showNum==1)">
+      [{{deck.cardNum}}] </span>
+      </div>
+    </script>
+    -->
 </head>
 <body class="flex-box" card-game>
-		<div class="splash" ng-cloak>
+<div class="splash" ng-cloak>
 
-				<p>Loading...</p>
-		</div>
-
-
-		<div class="flex flex-box flex-h" ng-cloak>
-				<div class="header">
-						{{c.model.title}} <span ng-repeat="btn in c.model.btns"
-								ng-click="c.clickButton($index)"> <span class='btn'>
-										[{{btn}}] </span>
-						</span>
-				</div>
+    <p>Loading...</p>
+</div>
 
 
+<div class="flex flex-box flex-h" ng-cloak>
+    <div class="header">
+        {{c.model.title}}
+        <span ng-repeat="btn in c.model.btns"
+              ng-click="c.clickButton($index)" class='btn'>
+            [{{btn}}]
+		</span>
 
-				<h1>Supply</h1>
-				<div class="flex flex-box">
-						<host model="c.model.host"></host>
-				</div>
-				<!--
-            <div ng-repeat="deck in c.model.host.decks"
-              style="float: left;">
-              <span ng-if="deck.showNum==2"> [{{deck.cardNum}}] </span><span
-                ng-if="deck.getValue('vt')"> <img
-                src="img/16px-vp.png" style="width: 10px; height: 10px;" /></span>
-              <br /> <span ng-include="deck"></span>
-            </div>
-            <br style="clear: both;" />
-            -->
-				<h1>Players</h1>
-				<!--
-            <div style="float: left;">
-              <div ng-if="c.currentID!=c.clientID"
-                style="width: 216px; margin-left: 5px; border: dotted 1px black;">
-                <div style='background-color: pink; margin: 10px;'>
-                  你的牌堆:</div>
-
-                <div ng-repeat="deck in c.clientUser.decks">
-                  <span ng-include="deck_name"></span><span
-                    ng-include="deck"></span>
-                </div>
-              </div>
-
-            </div>
-
-            <div
-              style="float: left; width: 216px; margin-left: 5px; border: dotted 1px black;">
-              <div style='background-color: yellow; margin: 10px;'>
-                換{{c.currentName}}出牌: <br />
-
-              </div>
-
-              <div ng-repeat="deck in c.currentUser.decks">
-
-                <span ng-include="deck_name"></span><span
-                  ng-include="deck"></span>
-              </div>
-
-            </div>
-
-            <div ng-repeat="user in c.model.users" style="float: left;">
-
-              <div
-                style="margin-left: 5px; width: 216px; border: dotted 1px black;"
-                ng-if="c.currentID!=user.uid && user.uid!=c.clientID">
-                <div style='background-color: gray; margin: 10px;'>
-                  {{c.getName(user.uid)}}的牌堆:</div>
-
-                <div ng-repeat="deck in user.decks">
-                  <span ng-include="deck_name"></span><span
-                    ng-include="deck"></span>
-                </div>
-
-              </div>
-
-            </div>
-
-            <br style="clear: both;" />
-            -->
+    </div>
 
 
-				<div class="flex flex-box">
-						<user ng-if="c.model.users != null" ng-repeat="user in c.model.users" model="user"></user>
-				</div>
+    <h1>Supply</h1>
+
+    <div class="flex flex-box">
+        <host model="c.model.host"></host>
+    </div>
+
+    <h1>Players</h1>
 
 
-		</div>
+    <div class="flex flex-box">
+        <user ng-if="c.model.users != null" ng-repeat="user in c.model.users" model="user"></user>
+    </div>
 
 
-		<div class="right flex flex-box flex-h" ng-cloak>
-
-				<div id="info">
-						<div ng-if="c.model.start">
-								<div ng-if="c.model.hasValue">公開資訊:</div>
-
-								<ul>
-										<li ng-if="c.model.getValue('action')">行動:
-												{{c.model.getValue('action')}}</li>
-										<li ng-if="c.model.getValue('buy')">購買:
-												{{c.model.getValue('buy')}}</li>
-										<li ng-if="c.model.getValue('gold')">金幣:
-												{{c.model.getValue('gold')}}</li>
-										<li ng-if="c.model.getValue('route')">銷路:
-												{{c.model.getValue('route')}}</li>
-								</ul>
-
-								<div ng-if="c.clientUser.hasValue">私人資訊:</div>
-								<ul>
-										<li ng-if="c.clientUser.getValue('victory')">勝利點數:
-												{{c.clientUser.getValue('victory')}}</li>
-										<!-- <div ng-repeat="info in c.model.info()">{{info.key}}</div> -->
-								</ul>
-						</div>
-				</div>
-				<div id="logs" class="flex"></div>
-				<textarea class="flex" style="height: 40px;" id="inputBox"
-						placeholder="Chat here."></textarea>
-		</div>
+</div>
 
 
+<div class="right flex flex-box flex-h" ng-cloak>
 
-		<img ng-cloak id='tipCard'
-				ng-style="{'position': 'absolute','display': 'none'}"
-				alt="{{c.curCard.name}}"
-				ng-src="{{'img/200px-'+c.curCard.name+'.jpg'}}" />
+    <div id="info">
+        <div ng-if="c.model.start">
+            <div ng-if="c.model.hasValue">公開資訊:</div>
 
-		<script src="packages/shadow_dom/shadow_dom.min.js"></script>
-		<script type="application/dart" src="dominion.dart"></script>
-		<script src="packages/browser/dart.js"></script>
+            <ul>
+                <li ng-if="c.model.getValue('action')">行動:
+                    {{c.model.getValue('action')}}
+                </li>
+                <li ng-if="c.model.getValue('buy')">購買:
+                    {{c.model.getValue('buy')}}
+                </li>
+                <li ng-if="c.model.getValue('gold')">金幣:
+                    {{c.model.getValue('gold')}}
+                </li>
+                <li ng-if="c.model.getValue('route')">銷路:
+                    {{c.model.getValue('route')}}
+                </li>
+            </ul>
+
+            <div ng-if="c.clientUser.hasValue">私人資訊:</div>
+            <ul>
+                <li ng-if="c.clientUser.getValue('victory')">勝利點數:
+                    {{c.clientUser.getValue('victory')}}
+                </li>
+                <!-- <div ng-repeat="info in c.model.info()">{{info.key}}</div> -->
+            </ul>
+        </div>
+    </div>
+    <div id="logs" class="flex"></div>
+    <textarea class="flex" style="height: 40px;" id="inputBox"
+              placeholder="Chat here."></textarea>
+</div>
+
+
+<!--<img ng-cloak id='tipCard'-->
+     <!--ng-style="{'position': 'absolute','display': 'none'}"-->
+     <!--alt="{{c.curCard.name}}"-->
+     <!--ng-src="{{'img/200px-'+c.curCard.name+'.jpg'}}"/>-->
+
+<script src="packages/shadow_dom/shadow_dom.min.js"></script>
+<script type="application/dart" src="dominion.dart"></script>
+<script src="packages/browser/dart.js"></script>
 </body>
 
 

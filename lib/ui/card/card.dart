@@ -1,11 +1,9 @@
 part of ui;
 
-@Component(selector: 'card', templateUrl: 'packages/card_game/ui/card/card.html', cssUrl: 'packages/card_game/ui/card/card.css',
-    publishAs: 'ccmd',map:const{
-    	'model':'=>!card'
-    })
+@Component(selector: 'card',useShadowDom:false, templateUrl: 'packages/card_game/ui/card/card.html',
+    publishAs: 'ccmd')
 class CardUI {
-//  @NgOneWay('model')
+  @NgOneWay('model')
   CardModel card;
   
 //  @NgTwoWay('uid')
@@ -25,8 +23,8 @@ class CardUI {
   
   String getBackground() {
   	//print("hi");
-  	return "url('img/75px-Copper.jpg')";
-    //return "url('img/75px-${CardSet.def(card.cid).name}.jpg')";
+  	//return "url('img/75px-Copper.jpg')";
+    return "url('img/75px-${CardSet.def(card.cid).name}.jpg')";
   }
   
   String getCardStyle() {

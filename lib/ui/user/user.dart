@@ -1,12 +1,9 @@
 part of ui;
 
-@Component(selector: 'user', publishAs: 'cmp', templateUrl: 'packages/card_game/ui/user/user.html', cssUrl: 'packages/card_game/ui/user/user.css')
+@Component(selector: 'user', publishAs: 'ucmp', useShadowDom:false, templateUrl: 'packages/card_game/ui/user/user.html')
 class UserUI {
 	static final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
 
-
-	//  @NgTwoWay('deck')
-	//  DeckModel deck;
 	@NgOneWay('model')
 	UserModel userModel;
 
