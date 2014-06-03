@@ -206,7 +206,7 @@ class GameController {
 			'pos': card.pos,
 		});
 
-		hindCard();
+		//hindCard();
 	}
 
 	void clickButton(int bid) {
@@ -218,24 +218,24 @@ class GameController {
 
 
 
-	void showCard(int cid) {
-		var tip = querySelector('#tipCard');
-		int rx = (mp.x + 400) > window.screen.width ? mp.x - 240 : mp.x + 220;
-		int ry = (mp.y + 450) > window.screen.height ? mp.y - 200 : mp.y + 20;
-		//int rx=window.screen.width-200;
-		//int ry=window.screen.height-450;
-		tip.style.left = "${rx}px";
-		tip.style.top = "${ry}px";
-		tip.style.display = "inline";
-		//tip.clientTop=my;
-
-		curCard = CardSet.def(cid);
-	}
-
-	void hindCard() {
-		var tip = querySelector('#tipCard');
-		tip.style.display = "none";
-	}
+//	void showCard(int cid) {
+//		var tip = querySelector('#tipCard');
+//		int rx = (mp.x + 400) > window.screen.width ? mp.x - 240 : mp.x + 220;
+//		int ry = (mp.y + 450) > window.screen.height ? mp.y - 200 : mp.y + 20;
+//		//int rx=window.screen.width-200;
+//		//int ry=window.screen.height-450;
+//		tip.style.left = "${rx}px";
+//		tip.style.top = "${ry}px";
+//		tip.style.display = "inline";
+//		//tip.clientTop=my;
+//
+//		curCard = CardSet.def(cid);
+//	}
+//
+//	void hindCard() {
+//		var tip = querySelector('#tipCard');
+//		tip.style.display = "none";
+//	}
 
 	void onMessage(e) {
 		var data = JSON.decode(e.data);
@@ -332,11 +332,11 @@ class GameController {
 								var img = new ImageElement(src: 'img/75px-$name.jpg', width: 30, height: 48);
 								if (cid != -1) {
 									img.onMouseOver.listen((s) {
-										showCard(cid);
+										//showCard(cid);
 									});
 								}
 								img.onMouseOut.listen((s) {
-									hindCard();
+									//hindCard();
 								});
 								span.children.add(img);
 								span.title = name;

@@ -1,5 +1,2 @@
-<div class="decks">
-		<div ng-if="cmp.userModel != null" ng-repeat="deck in cmp.userModel.decks">
-				<deck model="deck"></deck>
-		</div>
-</div>
+<h1>Supply</h1>
+<deck class="deck" ng-repeat="deck in cmp.userModel.decks" model="deck" ></deck>

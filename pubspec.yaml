@@ -7,3 +7,6 @@ dev_dependencies:
   route: any
 transformers:
 - angular
+- $dart2js:
+    checked: false
+    minify: false

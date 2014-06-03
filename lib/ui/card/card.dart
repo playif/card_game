@@ -21,10 +21,10 @@ class CardUI {
     //print(controller.hashCode);
   }
   
-  String getBackground() {
+  String get getCardImage {
   	//print("hi");
   	//return "url('img/75px-Copper.jpg')";
-    return "url('img/75px-${CardSet.def(card.cid).name}.jpg')";
+    return  "background-image : url('img/75px-${CardSet.def(card.cid).name}.jpg')";
   }
   
   String getCardStyle() {

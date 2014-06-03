@@ -1,9 +1,9 @@
 
 import 'dart:async';
 import 'dart:html';
-//import 'dart:convert';
-//import 'dart:collection';
 
+import 'package:angular/angular.dart';
+import 'package:angular/application_factory.dart';
 
 import 'package:card_game/card_game/card_game.dart';
 import 'package:card_game/dominion_card.dart';

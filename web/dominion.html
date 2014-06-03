@@ -34,7 +34,7 @@
 </div>
 
 
-<div class="flex flex-box flex-h" ng-cloak>
+<div class="flex" ng-cloak>
     <div class="header">
         {{c.model.title}}
         <span ng-repeat="btn in c.model.btns"
@@ -45,18 +45,18 @@
     </div>
 
 
-    <h1>Supply</h1>
 
-    <div class="flex flex-box">
-        <host model="c.model.host"></host>
-    </div>
 
+
+    <host model="c.model.host"></host>
+
+    <hr style="clear: both;" />
     <h1>Players</h1>
 
 
-    <div class="flex flex-box flex-h">
-        <user ng-if="c.model.users != null" ng-repeat="user in c.model.users" model="user"></user>
-    </div>
+
+    <user class="user" ng-if="c.model.users != null" ng-repeat="user in c.model.users" model="user"></user>
+
 
 
 </div>

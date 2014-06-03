@@ -106,26 +106,32 @@ h1, p {
 }
 
 .card {
-    flex: auto;
-    -webkit-flex: auto;
     background-size: 100% 100%;
     width: 40px;
     height: 60px;
+    float:left;
 }
+
+
 
 .deck{
-    flex:auto;
-    -webkit-flex:auto;
-    display:flex;
-    display:-webkit-flex;
+    float:left;
 }
 
-.decks{
-    display:flex;
-    display:-webkit-flex;
-    flex-wrap:wrap;
-    -webkit-wrap:auto;
+.user{
+    border: 1px solid red;
+    margin: 5px;
+    width: 200px;
+    min-height: 200px;
+    float:left;
 }
+
+/*.decks{*/
+    /*display:flex;*/
+    /*display:-webkit-flex;*/
+    /*flex-wrap:wrap;*/
+    /*-webkit-wrap:auto;*/
+/*}*/
 
 .canSelect {
     cursor: pointer;
