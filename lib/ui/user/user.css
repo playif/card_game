@@ -6,12 +6,12 @@
   width:200px;
 }
 
-.decks {
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-}
+/*.decks {*/
+  /*display: flex;*/
+  /*display: -webkit-flex;*/
+  /*flex-direction: column;*/
+  /*-webkit-flex-direction: column;*/
+/*}*/
 
 .title {
   background-color: gray;

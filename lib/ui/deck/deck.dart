@@ -1,7 +1,6 @@
 part of ui;
 
-@Component(selector: 'deck',useShadowDom:false, templateUrl: 'packages/card_game/ui/deck/deck.html', cssUrl: 'packages/card_game/ui/deck/deck.css',
-    publishAs: 'dcmp')
+@Component(selector: 'deck',useShadowDom:false, templateUrl: 'packages/card_game/ui/deck/deck.html', cssUrl: 'packages/card_game/ui/deck/deck.css')
 class DeckUI {
 
   @NgOneWay('model')

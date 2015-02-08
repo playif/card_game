@@ -415,10 +415,10 @@ class UserModel {
   final List<DeckModel> _decks = new List<DeckModel>();
   final Map<String, int> _map = new Map<String, int>();
 
-  //  final Values vals=new Values();
+
   final int uid;
 
-  const UserModel._(this.uid, this.model);
+  UserModel._(this.uid, this.model);
 
   bool get hasValue {
     return _map.length != 0;

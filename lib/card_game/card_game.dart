@@ -669,6 +669,8 @@ abstract class CardGame{
     if(pos2==LAST_CARD){
       pos2=_model[uid2][did2].cardNum;
     }
+
+    //print("Reveal: $uid1, $did1, $uid2, $did2");
     //print('Hi2');
     _broadCast({
       'op':'moveCard',
@@ -688,6 +690,7 @@ abstract class CardGame{
   }
   
   moveAllCard(int uid1, int did1, int uid2, int did2) {
+
     DeckModel from=_model[uid1][did1];
     DeckModel to=_model[uid2][did2];
     //print('Hi');

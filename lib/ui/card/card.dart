@@ -1,48 +1,44 @@
 part of ui;
 
-@Component(selector: 'card', useShadowDom:false, templateUrl: 'packages/card_game/ui/card/card.html',
-    publishAs: 'ccmd')
-class CardUI implements AttachAware{
+@Component(selector: 'card', useShadowDom:false, templateUrl: 'packages/card_game/ui/card/card.html')
+class CardUI implements AttachAware {
   @NgOneWay('model')
   CardModel card;
   Element element;
-  
-//  @NgTwoWay('uid')
-//  int uid;
-//  
-//  @NgTwoWay('did')
-//  int did;
-//  
-//  @NgTwoWay('cid')
-//  int cid;
-  
+
+
   ClientService service;
-  
-  CardUI(this.service,this.element){
-    //print(controller.hashCode);
+
+  CardUI(this.service, this.element) {
   }
-  
+
+  void clickCard() {
+    service.clickCard(card);
+  }
+
+  void enterCard() {
+    service.displayTip='block';
+    service.curCard = CardSet.def(card.cid);
+  }
+
+  void leaveCard() {
+    service.displayTip='none';
+  }
+
   String get getCardImage {
-  	//print("hi");
-  	//return "url('img/75px-Copper.jpg')";
-    return  "background-image : url('img/75px-${CardSet.def(card.cid).name}.jpg')";
+    return "background-image : url('img/75px-${CardSet.def(card.cid).name}.jpg')";
   }
-  
+
   String getCardStyle() {
-    //if (card == null) return "";
     if (card.model.cmds.contains("${card.uid} ${card.did} ${card.pos}")) {
       return "canSelectRedInset";
     }
     return "";
   }
-  
-  void clickCard(){
-    service.clickCard(card);
-  }
 
   @override
-  void attach(){
-    element.style.backgroundImage="url('img/75px-${CardSet.def(card.cid).name}.jpg')";
+  void attach() {
+    element.style.backgroundImage = "url('img/75px-${CardSet.def(card.cid).name}.jpg')";
   }
-  
+
 }

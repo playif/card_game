@@ -3,9 +3,9 @@
   -webkit-flex:auto;
 }
 
-.decks{
-  display:flex;
-  display:-webkit-flex;
-  flex-wrap:wrap;
-  -webkit-wrap:auto;
-}
+/*.decks{*/
+  /*display:flex;*/
+  /*display:-webkit-flex;*/
+  /*flex-wrap:wrap;*/
+  /*-webkit-wrap:auto;*/
+/*}*/

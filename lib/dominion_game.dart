@@ -42,6 +42,7 @@ class DominionGame extends CardGame {
   }
 
   void endReveal(int uid, [int did=HAND]) {
+
     moveAllCard(uid, REVEAL, uid, did);
   }
 
@@ -205,20 +206,23 @@ class DominionGame extends CardGame {
           plusUserValue(HOST, "route", 1);
         }
 
-        gainCardFromSupply(cmd.did);
+
         msg(HOST, "~${this[USER]}購買了%Yellow[${doc.name}]@${cmd.cid};。");
-        if (model[HOST][cmd.did].cardNum <= 0) {
-          //print(this[EMPTY]);
-          if (cmd.did == 5) {
-            _endGame();
-          }
-          else {
-            this[EMPTY]++;
-            if (this[EMPTY] >= 3) {
-              _endGame();
-            }
-          }
-        }
+
+        gainCardFromSupply(cmd.did);
+
+//        if (model[HOST][cmd.did].cardNum <= 0) {
+//          print(this[EMPTY]);
+//          if (cmd.did == 5) {
+//            _endGame();
+//          }
+//          else {
+//            this[EMPTY]++;
+//            if (this[EMPTY] >= 3) {
+//              _endGame();
+//            }
+//          }
+//        }
       }
     }
   }
@@ -228,7 +232,6 @@ class DominionGame extends CardGame {
   bool gainCardFromSupply(int did, [int did2=TRUNK, int uid2]) {
     if (uid2 == null)uid2 = this[USER];
     if (model[HOST][did].cardNum <= 0)return false;
-
 
 
     moveCard(HOST, did, 0, uid2, did2, LAST_CARD);
@@ -271,6 +274,7 @@ class DominionGame extends CardGame {
     //TODO 要處理抽光牌的問題。
     loop(times, (i) {
       if (did == DRAW && !checkDraw(uid))return;
+      //print("Here");
       moveCard(uid, did, pos, uid, REVEAL, LAST_CARD);
     });
     return true;
@@ -289,8 +293,8 @@ class DominionGame extends CardGame {
     removeCard(uid, did, pos);
   }
 
-  bool _endGame() {
-    if (this["OVER"] == 1)return true;
+  void _endGame() {
+    if (this["OVER"] == 1)return;
     loop(model.userNum, (s) {
       this[USER] = s;
       moveAllCard(s, DRAW, s, TABLE);

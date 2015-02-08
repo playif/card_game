@@ -2,7 +2,9 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/bin/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/packages/card_game" />
       <excludeFolder url="file://$MODULE_DIR$/web/img/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/packages" />
@@ -12,4 +14,3 @@
     <orderEntry type="library" name="Dart SDK" level="application" />
   </component>
 </module>
-

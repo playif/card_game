@@ -294,7 +294,7 @@ class NoCondition extends Condition{
 }
 
 class NotCondition extends Condition{
-  final NotCondition cond;
+  final Condition cond;
   NotCondition(this.cond);
   bool test(Command cmd){
     return !cond.test(cmd);

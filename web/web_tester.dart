@@ -14,7 +14,7 @@ main(){
   DateTime now = new DateTime.now();
   List<Future> threads=<Future>[];
   var body=querySelector('body');
-  for(int i=0;i<100;i++){
+  for(int i=0;i<1000;i++){
     var game=new DominionGame();
     List<AI> ais=<AI>[new DominionAI(),new DominionAI()];
     

@@ -1,8 +1,8 @@
-<div class="title">玩家[{{ ucmp.userModel.uid }}]:</div>
+<div class="title">玩家[{{ userModel.uid }}]:</div>
 <div class="decks">
-    <div ng-repeat="deck in ucmp.userModel.decks">
+    <div ng-repeat="deck in userModel.decks">
         <hr style="clear: both;"/>
-        {{ ucmp.getName(deck) }}[{{ deck.cardNum }}]
+        {{ getName(deck) }}[{{ deck.cardNum }}]
         <deck model="deck"></deck>
     </div>
 

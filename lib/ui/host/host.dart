@@ -1,6 +1,6 @@
 part of ui;
 
-@Component(selector: 'host', publishAs: 'cmp', useShadowDom:false, templateUrl: 'packages/card_game/ui/host/host.html', cssUrl: 'packages/card_game/ui/host/host.css')
+@Component(selector: 'host', useShadowDom:false, templateUrl: 'packages/card_game/ui/host/host.html', cssUrl: 'packages/card_game/ui/host/host.css')
 class HostUI {
   //static final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
 

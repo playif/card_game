@@ -5,6 +5,7 @@ abstract class Commander  {
 //  final CardGame _game;
   final StreamController _commands=new StreamController();
   void add(data){
+    //print(data);
     _commands.add(data);
   }
   Commander._(this.uid){
@@ -16,7 +17,13 @@ abstract class Commander  {
 //  }
 }
 
-class UserCommander extends Commander{
+class ConnectorCommander extends Commander{
+  ConnectorCommander._(int uid):super._(uid){
+
+  }
+}
+
+class UserCommander extends ConnectorCommander{
   final StreamController _changes=new StreamController();
   Stream get changes=>_changes.stream;
   UserCommander._(int uid):super._(uid){
@@ -66,7 +73,7 @@ class ComputerCommander extends Commander{
       var btns=state.btns;
       if(cmds==null || cmds.length==0){
         if(btns==null)return;
-        _commands.add({
+        add({
           'cmd':'clickButton',
           'bid':0}
         );
@@ -75,7 +82,7 @@ class ComputerCommander extends Commander{
       
       
       
-      _commands.add(ai.calculateCommand(state));
+      add(ai.calculateCommand(state));
 
       
 

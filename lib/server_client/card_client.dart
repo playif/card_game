@@ -5,64 +5,32 @@ import 'dart:async';
 import 'dart:convert';
 import '../card_game/card_game.dart';
 
-//abstract class Client {
-////  GameModel clientModel;
-//  Client();
-//  
-//  void createModel(){
-//    clientModel=new GameModel();
-//  }
-//
-////  void onMessage(Event e);
-//  void sendCommand(command);
-//}
-
-//class ClientToLocal extends Client {
-//  final CardGame _game;
-//  
-//  ClientToLocal(this._game,List<AI> ais){
-//    //_game=new DominionGame();
-//    createModel();
-//    UserCommander commander=new UserCommander(0,_game);
-//    commander.changes.stream.listen((op){
-//      clientModel.changeModel(op);      
-//    });
-//    _game.addCommander(commander);
-//
-//    
-//    for(int i=0;i<ais.length;i++){
-//      ComputerCommander comm=new ComputerCommander(i+1, _game,ais[i]);
-//      comm.changes.stream.listen((op){
-//        comm.ai.model.changeModel(op);
-//        Timer t=new Timer(new Duration( milliseconds: 50), (){
-//          comm.calculateCommand(op);
-//        });
-//      });
-//      _game.addCommander(comm);
-//    }
-//    
-//    _game.setup();
-//  }
-//
-//  void sendCommand(command) {
-//    _game.commanders[0].commands.add(command);
-//  }
-//}
+import 'package:angular/angular.dart';
 
 
+@Injectable()
 class Client {
   static const Duration RECONNECT_DELAY = const Duration(milliseconds: 500);
   bool _onLine;
   UserCommander _comm;
   GameModel clientModel;
+  GameModel get model{
+    return clientModel;
+  }
   
   bool _connectPending = false;
   WebSocket _socket;
-  
-  Client()  {
 
+  void clickCard(CardModel card) {
+    sendCommand({
+        'cmd': 'clickCard',
+        'uid': card.uid,
+        'did': card.did,
+        'pos': card.pos,
+    });
   }
-  
+
+
   void sendCommand(command) {
     if(_onLine){
       _socket.send(JSON.encode(command));
@@ -72,7 +40,9 @@ class Client {
     }
 
   }
-  
+
+
+
   createLoaclGame(CardGame game){
     _onLine=false;
     clientModel=new GameModel();
@@ -80,7 +50,7 @@ class Client {
     _comm.changes.listen((op){
       clientModel.changeModel(op);      
     });
-//    clientModel=game.model;
+
     game.setup();
   }
   
@@ -114,8 +84,7 @@ class Client {
     if (_connectPending) return;
     _connectPending = true;
     new Timer(RECONNECT_DELAY, createOnlneGame);
-    
-    //clientModel=disConnect(d);
+
   }
 
 }

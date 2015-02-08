@@ -1,38 +1,40 @@
-:host{
-  flex:auto;
-  -webkit-flex:auto;
-  display:flex;
-  display:-webkit-flex;
+:host {
+    flex: auto;
+    -webkit-flex: auto;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-wrap: auto;
 }
 
-.cards{
-  display:flex;
-  display:-webkit-flex;
-  flex-wrap:wrap;
-  -webkit-wrap:auto;
-  flex:auto;
-  -webkit-flex:auto;
+/*.cards{*/
+/*display:flex;*/
+/*display:-webkit-flex;*/
+/*flex-wrap:wrap;*/
+/*-webkit-wrap:auto;*/
+/*flex:auto;*/
+/*-webkit-flex:auto;*/
+/*}*/
+
+/*.card{*/
+/*cursor: pointer;*/
+/*width: 40px;*/
+/*max-width:40px;*/
+/*min-width:40px;*/
+/*height: 60px;*/
+/*flex:auto;*/
+/*-webkit-flex:auto;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+.canSelectRedInset {
+    box-shadow: inset 0px 0px 5px 2px #00FF00;
+    -moz-box-shadow: inset 0px 0px 5px 2px #00FF00;
+    -webkit-box-shadow: inset 0px 0px 5px 2px #00FF00;
 }
 
-.card{
-  cursor: pointer;
-  width: 40px;
-  max-width:40px;
-  min-width:40px;
-  height: 60px;
-  flex:auto;
-  -webkit-flex:auto;
-  background-size: 100% 100%;
-}
-
-.canSelectRedInset{
-  box-shadow: inset 0px 0px 5px 2px #00FF00;
-  -moz-box-shadow: inset 0px 0px 5px 2px #00FF00;
-  -webkit-box-shadow: inset 0px 0px 5px 2px #00FF00;
-}
-
-.canSelectRedInset:hover{
-  box-shadow: inset 0px 0px 5px 4px #FFFF00;
-  -moz-box-shadow: inset 0px 0px 5px 4px #FFFF00;
-  -webkit-box-shadow: inset 0px 0px 5px 4px #FFFF00;
+.canSelectRedInset:hover {
+    box-shadow: inset 0px 0px 5px 4px #FFFF00;
+    -moz-box-shadow: inset 0px 0px 5px 4px #FFFF00;
+    -webkit-box-shadow: inset 0px 0px 5px 4px #FFFF00;
 }

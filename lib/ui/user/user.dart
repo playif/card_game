@@ -1,19 +1,12 @@
 part of ui;
 
-@Component(selector: 'user', publishAs: 'ucmp', useShadowDom:false, templateUrl: 'packages/card_game/ui/user/user.html')
+@Component(selector: 'user', useShadowDom:false, templateUrl: 'packages/card_game/ui/user/user.html')
 class UserUI {
 	static final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
 
 	@NgOneWay('model')
 	UserModel userModel;
 
-	//  @NgTwoWay('client')
-	//  Client client;
-
-	//  @NgTwoWay('uid')
-	//  int uid;
-
-	//  List<DeckModel> decks;
 	String getName(DeckModel deck) {
 		return UserUI.deckNames[deck.did];
 	}

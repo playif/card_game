@@ -9,23 +9,8 @@
           content="black-translucent"/>
     <title>Dominion v0.8.3</title>
     <link rel="stylesheet" href="cardgame.css"/>
-    <!--
-    <script id="deck" type="text/ng-template">
-      <span
-      ng-class="c.getCardStyle(card)" ng-repeat="card in deck.cards"
-      ng-style="c.getBackground(card.cid)"
-      ng-mouseover="c.showCard(card.cid)" ng-mouseout="c.hindCard()"
-      ng-click="c.clickCard(card)"> </span> <br clear="both" />
-    </script>
-
-    <script id="deck_name" type="text/ng-template">
-      <div>
-      {{c.deckNames[$index]}} <span
-      ng-if="deck.showNum==2 || (c.model.id==$parent.$index && deck.showNum==1)">
-      [{{deck.cardNum}}] </span>
-      </div>
-    </script>
-    -->
+    <script src="packages/web_components/webcomponents.min.js"></script>
+    <script src="packages/web_components/dart_support.js"></script>
 </head>
 <body class="flex-box" card-game>
 <div class="splash" ng-cloak>
@@ -35,24 +20,20 @@
 
 <div class="flex" ng-cloak>
     <div class="header">
-        {{c.model.title}}
-        <span ng-repeat="btn in c.model.btns"
-              ng-click="c.clickButton($index)" class='btn'>
+        {{model.title}}
+        <span ng-repeat="btn in model.btns"
+              ng-click="clickButton($index)" class='btn'>
             [{{btn}}]
 		</span>
     </div>
 
 
-
-
-    <host model="c.model.host"></host>
-    <hr style="clear: both;" />
+    <host model="model.host"></host>
+    <hr style="clear: both;"/>
     <h1>Players</h1>
 
 
-
-    <user class="user" ng-repeat="user in c.model.users" model="user"></user>
-
+    <user class="user" ng-repeat="user in model.users" model="user"></user>
 
 
 </div>
@@ -61,30 +42,30 @@
 <div class="right flex flex-box flex-h" ng-cloak>
 
     <div id="info">
-        <div ng-if="c.model.start">
-            <div ng-if="c.model.hasValue">公開資訊:</div>
+        <div ng-if="model.start">
+            <div ng-if="model.hasValue">公開資訊:</div>
 
             <ul>
-                <li ng-if="c.model.getValue('action')">行動:
-                    {{c.model.getValue('action')}}
+                <li ng-if="model.getValue('action')">行動:
+                    {{model.getValue('action')}}
                 </li>
-                <li ng-if="c.model.getValue('buy')">購買:
-                    {{c.model.getValue('buy')}}
+                <li ng-if="model.getValue('buy')">購買:
+                    {{model.getValue('buy')}}
                 </li>
-                <li ng-if="c.model.getValue('gold')">金幣:
-                    {{c.model.getValue('gold')}}
+                <li ng-if="model.getValue('gold')">金幣:
+                    {{model.getValue('gold')}}
                 </li>
-                <li ng-if="c.model.getValue('route')">銷路:
-                    {{c.model.getValue('route')}}
+                <li ng-if="model.getValue('route')">銷路:
+                    {{model.getValue('route')}}
                 </li>
             </ul>
 
-            <div ng-if="c.clientUser.hasValue">私人資訊:</div>
+            <div ng-if="clientUser.hasValue">私人資訊:</div>
             <ul>
-                <li ng-if="c.clientUser.getValue('victory')">勝利點數:
-                    {{c.clientUser.getValue('victory')}}
+                <li ng-if="clientUser.getValue('victory')">勝利點數:
+                    {{clientUser.getValue('victory')}}
                 </li>
-                <!-- <div ng-repeat="info in c.model.info()">{{info.key}}</div> -->
+                <!-- <div ng-repeat="info in model.info()">{{info.key}}</div> -->
             </ul>
         </div>
     </div>
@@ -94,10 +75,10 @@
 </div>
 
 
-<!--<img ng-cloak id='tipCard'-->
-     <!--ng-style="{'position': 'absolute','display': 'none'}"-->
-     <!--alt="{{c.curCard.name}}"-->
-     <!--ng-src="{{'img/200px-'+c.curCard.name+'.jpg'}}"/>-->
+<img ng-cloak id='tipCard'
+     ng-style="{position: 'absolute',display: DisplayTip,right:'0px',bottom:'0px'}"
+     alt="{{CurCard.name}}"
+     ng-src="{{'img/200px-'+CurCard.name+'.jpg'}}"/>
 
 
 <script type="application/dart" src="dominion.dart"></script>

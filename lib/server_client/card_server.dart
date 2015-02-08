@@ -11,11 +11,6 @@ import '../card_game/card_game.dart';
 
 
 
-
-
-
-
-
 final Logger log = new Logger('CardGame');
 //Function a;
 
@@ -28,11 +23,10 @@ class Match{
 typedef CardGame CreateGame();
 
 class Server{
-  Set<CardGame> _games=new Set<CardGame>();
+  //Set<CardGame> _games=new Set<CardGame>();
   List<WebSocket> _users=new List<WebSocket>();
-  //T _game;
-  
-  
+
+
   Server(){
     //var g=_game as Game;
     Logger.root.level = Level.ALL;
@@ -49,7 +43,7 @@ class Server{
     var port = portEnv == null ? 9999 : int.parse(portEnv);
     print(port);
     
-    var buildPath = Platform.script.resolve('../build').toFilePath();
+    var buildPath = Platform.script.resolve('../web').toFilePath();
     if (!new Directory(buildPath).existsSync()) {
       log.severe("The 'build/' directory was not found. Please run 'pub build'.");
       return;
@@ -58,28 +52,25 @@ class Server{
     HttpServer.bind(InternetAddress.ANY_IP_V4, port).then((server) {
       log.info("Search server is running on "
           "'http://${Platform.localHostname}:$port/'");
-      
-      var router = new Router(server);
+
+      Router router = new Router(server);
+
       
       router.serve('/ws').transform(new WebSocketTransformer())
       .listen((WebSocket socket){
 
-//          WebSocketTransformer.upgrade(request).then((socket){
-        //log.info(socket.connectionInfo.remoteAddress.toString()+" connected..");
         int socketID=socket.hashCode;
         _users.add(socket);
         if(_users.length==2){
           var game=newGame();
           for(int uid=0;uid<_users.length;uid++) {
-            addUserCommand(_users[uid],game);
+            CreateUserCommand(_users[uid],game);
           }
           game.setup();
           _users=new List<WebSocket>();
           
           socket.done.then((v){
             game.msg(HOST, 'error...');
-            //game['gold']=40;
-            //print("here");
           });
         }
         
@@ -88,10 +79,6 @@ class Server{
       },onError:(e){
         print("here");
       });
-
-//        },onError:(e){
-//          print("here");
-//        });
 
 
       // Set up default handler. This will serve files from our 'build' directory.
@@ -117,10 +104,9 @@ class Server{
 
     });
   }
-  
-  void addUserCommand(WebSocket socket,CardGame game){
-    UserCommander comm=game.createUser();
-    //Commander commander=new UserCommander._(uid,game);
+
+  ConnectorCommander CreateConnectorCommand(WebSocket socket){
+    ConnectorCommander comm=game.createUser();
     socket.listen((String command){
       comm.add(JSON.decode(command));
     },onDone: (){
@@ -128,12 +114,25 @@ class Server{
       //commands.close();
     });
     comm.changes.listen((op){
-      //print(op);
       socket.add(JSON.encode(op));
     });
-    //game.addCommander(commander);
-    //return commander;
-    //print("hi");
+
+    return comm;
+  }
+
+  UserCommander CreateUserCommand(WebSocket socket,CardGame game){
+    UserCommander comm=game.createUser();
+    socket.listen((String command){
+      comm.add(JSON.decode(command));
+    },onDone: (){
+      //TODO 通知有玩家離開
+      //commands.close();
+    });
+    comm.changes.listen((op){
+      socket.add(JSON.encode(op));
+    });
+
+    return comm;
   }
   
 }
