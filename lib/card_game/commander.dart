@@ -17,13 +17,9 @@ abstract class Commander  {
 //  }
 }
 
-class ConnectorCommander extends Commander{
-  ConnectorCommander._(int uid):super._(uid){
 
-  }
-}
 
-class UserCommander extends ConnectorCommander{
+class UserCommander extends Commander{
   final StreamController _changes=new StreamController();
   Stream get changes=>_changes.stream;
   UserCommander._(int uid):super._(uid){

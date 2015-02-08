@@ -7,7 +7,7 @@ class CardUI implements AttachAware {
   Element element;
 
 
-  ClientService service;
+  GameClient service;
 
   CardUI(this.service, this.element) {
   }

@@ -3,7 +3,6 @@ import 'package:angular/application_factory.dart';
 import 'package:di/annotations.dart';
 
 
-import 'dart:async';
 import 'dart:html';
 import 'dart:convert';
 import 'dart:collection';
@@ -12,7 +11,6 @@ import 'dart:collection';
 import 'package:card_game/card_game/card_game.dart';
 import 'package:card_game/dominion_card.dart';
 import 'package:card_game/server_client/card_client.dart';
-
 import 'package:card_game/ui/ui.dart';
 
 
@@ -27,21 +25,27 @@ int scroll;
 
 
 @Injectable()
-class GameController {
+class DominionClient extends GameClient {
+
   final List<String> deckNames = ["SOURCE", "HAND", "TABLE", "TRUNK", "REVEAL"];
-  ClientService services;
-  GameModel model;
-  DominionCardDef get CurCard{
-    return services.curCard;
+  String playerName;
+
+  void login(){
+//    if(playerName == null){
+//      playerName = "player-$userNum";
+//    }
+    print(playerName);
+
+    sendString(playerName);
   }
 
-  String get DisplayTip{
-    return services.displayTip;
+  void joinRoom(Room room){
+
   }
 
   int rating = 3;
 
-  GameController(this.services) {
+  DominionClient() {
     void createLocalGame() {
       var game = new DominionGame();
       var ais = [new DominionAI()];//, new DominionAI(), new DominionAI()];
@@ -49,9 +53,10 @@ class GameController {
       for (int i = 0; i < ais.length; i++) {
         game.createComputer(ais[i]);
       }
-      services.createLoaclGame(game);
+      this.createLoaclGame(game);
     }
-    createLocalGame();
+    //createLocalGame();
+    this.connectToServer();
     //services.createLocalGame();
     setup();
 
@@ -142,7 +147,7 @@ class GameController {
 //  }
 
   void clickButton(int bid) {
-    services.sendCommand({
+    this.sendCommand({
         'cmd': 'clickButton',
         'bid': bid,
     });
@@ -156,7 +161,7 @@ class GameController {
 
   void setup() {
 
-    model = services.model;
+    //model = this.model;
 
     var logs = querySelector('#logs');
     logs.children.clear();
@@ -252,7 +257,7 @@ class GameController {
     var input = querySelector("#inputBox") as TextAreaElement;
     input.onInput.listen((s) {
       if (input.value.contains('\n')) {
-        services.sendCommand({
+        this.sendCommand({
             'cmd': 'talk',
             'msg': input.value,
         });
@@ -267,7 +272,7 @@ class GameController {
 
 class GameModule extends Module {
   GameModule() {
-    bind(ClientService, toValue:new ClientService());
+    bind(GameClient, toInstanceOf:DominionClient);
     bind(HostUI);
     bind(UserUI);
     bind(DeckUI);
@@ -278,7 +283,7 @@ class GameModule extends Module {
 
 void main() {
   applicationFactory()
-    ..rootContextType(GameController)
+    ..rootContextType(DominionClient)
     ..addModule(new GameModule())
     ..run();
 }

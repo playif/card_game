@@ -14,10 +14,10 @@ part 'card/card.dart';
 
 
 @Injectable()
-class ClientService extends Client {
+class GameClient extends Client {
+
   DominionCardDef curCard;
   String displayTip='none';
-
 
 }
 

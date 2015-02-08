@@ -12,74 +12,90 @@
     <script src="packages/web_components/webcomponents.min.js"></script>
     <script src="packages/web_components/dart_support.js"></script>
 </head>
-<body class="flex-box" card-game>
-<div class="splash" ng-cloak>
-    <p>Loading...</p>
+<body class="flex-box" card-game ng-cloak>
+<div>
+    <div>在線人數: {{ userNum }}</div>
+    <div>系統訊息: {{ msg }}</div>
+    <div ng-if="state == 'disConnected'">Disconnected</div>
+    <div ng-if="state == 'connected'">
+        請輸入你的暱稱：
+        <input type="text" ng-model="playerName"/> <button ng-click="login()">OK</button>
+    </div>
+    <div ng-if="state == 'lobby'">
+        你好： {{playerName}}
+        <button>開新房間</button>
+        <br/>
+        房間列表:<button>刷新</button>
+        <div ng-repeat="room in rooms">
+            房間：{{room.name}} 人數：{{room.currentPlayer}}/{{room.maxPlayer}} <button ng-click="joinRoom(room)">加入</button>
+        </div>
+    </div>
 </div>
 
 
-<div class="flex" ng-cloak>
-    <div class="header">
-        {{model.title}}
+<div ng-if="state == 'playing'">
+    <div class="flex" >
+        <div class="header">
+            {{model.title}}
         <span ng-repeat="btn in model.btns"
               ng-click="clickButton($index)" class='btn'>
             [{{btn}}]
 		</span>
-    </div>
-
-
-    <host model="model.host"></host>
-    <hr style="clear: both;"/>
-    <h1>Players</h1>
-
-
-    <user class="user" ng-repeat="user in model.users" model="user"></user>
-
-
-</div>
-
-
-<div class="right flex flex-box flex-h" ng-cloak>
-
-    <div id="info">
-        <div ng-if="model.start">
-            <div ng-if="model.hasValue">公開資訊:</div>
-
-            <ul>
-                <li ng-if="model.getValue('action')">行動:
-                    {{model.getValue('action')}}
-                </li>
-                <li ng-if="model.getValue('buy')">購買:
-                    {{model.getValue('buy')}}
-                </li>
-                <li ng-if="model.getValue('gold')">金幣:
-                    {{model.getValue('gold')}}
-                </li>
-                <li ng-if="model.getValue('route')">銷路:
-                    {{model.getValue('route')}}
-                </li>
-            </ul>
-
-            <div ng-if="clientUser.hasValue">私人資訊:</div>
-            <ul>
-                <li ng-if="clientUser.getValue('victory')">勝利點數:
-                    {{clientUser.getValue('victory')}}
-                </li>
-                <!-- <div ng-repeat="info in model.info()">{{info.key}}</div> -->
-            </ul>
         </div>
+
+
+        <host model="model.host"></host>
+        <hr style="clear: both;"/>
+        <h1>Players</h1>
+
+
+        <user class="user" ng-repeat="user in model.users" model="user"></user>
+
+
     </div>
-    <div id="logs" class="flex"></div>
+
+
+    <div class="right flex flex-box flex-h" ng-cloak>
+
+        <div id="info">
+            <div ng-if="model.start">
+                <div ng-if="model.hasValue">公開資訊:</div>
+
+                <ul>
+                    <li ng-if="model.getValue('action')">行動:
+                        {{model.getValue('action')}}
+                    </li>
+                    <li ng-if="model.getValue('buy')">購買:
+                        {{model.getValue('buy')}}
+                    </li>
+                    <li ng-if="model.getValue('gold')">金幣:
+                        {{model.getValue('gold')}}
+                    </li>
+                    <li ng-if="model.getValue('route')">銷路:
+                        {{model.getValue('route')}}
+                    </li>
+                </ul>
+
+                <div ng-if="clientUser.hasValue">私人資訊:</div>
+                <ul>
+                    <li ng-if="clientUser.getValue('victory')">勝利點數:
+                        {{clientUser.getValue('victory')}}
+                    </li>
+                    <!-- <div ng-repeat="info in model.info()">{{info.key}}</div> -->
+                </ul>
+            </div>
+        </div>
+        <div id="logs" class="flex"></div>
     <textarea class="flex" style="height: 40px;" id="inputBox"
               placeholder="Chat here."></textarea>
+    </div>
+
+
+    <img ng-cloak id='tipCard'
+         ng-style="{position: 'absolute',display: displayTip,right:'0px',bottom:'0px'}"
+         alt="{{curCard.name}}"
+         ng-src="{{'img/200px-'+curCard.name+'.jpg'}}"/>
 </div>
-
-
-<img ng-cloak id='tipCard'
-     ng-style="{position: 'absolute',display: DisplayTip,right:'0px',bottom:'0px'}"
-     alt="{{CurCard.name}}"
-     ng-src="{{'img/200px-'+CurCard.name+'.jpg'}}"/>
-
 
 <script type="application/dart" src="dominion.dart"></script>
 <script src="packages/browser/dart.js"></script>
